@@ -1,4 +1,3 @@
-#include <ctype.h>
 #include <stdio.h>
 #define lmax 200
 
@@ -42,7 +41,7 @@ int main() {
   if (nmin == 0)
     printf("Нет минимума");
   else {
-    printf("\tНомер:    %d\n", nmin);
+    printf("\tНомер:    %2d\n", nmin);
     printf("\tЗначение: %5.2f\n", a[nmin]);
   }
 
