@@ -3,7 +3,7 @@
 
 int main() {
   int n, i, nmax;
-  float s, a[lmax], max;
+  float s, a[lmax+1], max;
   printf("*************************************\n");
   printf("*     Семинар 1.01. Задание №01     *\n");
   printf("*************************************\n\n");

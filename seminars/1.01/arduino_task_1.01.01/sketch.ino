@@ -9,7 +9,7 @@ void setup() { // Код, выполняющийся в самом начале 
 
 void loop() { // Код, выполняющийся циклично
   int n = 0, i, nmax;
-  float s, a[lmax], max;
+  float s, a[lmax+1], max;
 
   do {
     Serial.print("Введите длину массива a [1:");

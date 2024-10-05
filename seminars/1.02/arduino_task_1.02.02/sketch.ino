@@ -11,7 +11,7 @@ void setup() {
 void loop() {
   // Здесь пишется код, выполняющийся циклично
   int n, m, i, nmin;
-  float A[lmax], B[lmax];
+  float A[lmax+1], B[lmax+1];
 
   do {
     Serial.print("Введите длину массива A [1:");

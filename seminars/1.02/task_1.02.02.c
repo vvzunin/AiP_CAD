@@ -4,7 +4,7 @@
 
 int main() {
   int n, m, i, nmin;
-  float A[lmax], B[lmax];
+  float A[lmax+1], B[lmax+1];
   printf("*************************************\n");
   printf("*     Семинар 1.02. Задание №02     *\n");
   printf("*************************************\n\n");

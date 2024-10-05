@@ -11,7 +11,7 @@ void setup() {
 void loop() {
   // Здесь пишется код, выполняющийся циклично
   int n = 0, i, nmin;
-  float s, a[lmax], x, y;
+  float s, a[lmax+1], x, y;
   Serial.print("Введите нижнюю границу условия x:  \n");
   while (Serial.available() == 0);
   x = Serial.parseFloat();
