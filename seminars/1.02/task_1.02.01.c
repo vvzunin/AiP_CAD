@@ -14,7 +14,7 @@ int main() {
     scanf("%d", &k);
   } while (k <= 0 || k > lmax);
 
-  printf("Введите элементы массива A[1:%d]:\n", n);
+  printf("Введите элементы массива A[1:%d]:\n", k);
   for (i = 1; i <= k; i++) {
     printf("\tВведите элемент %2d: ", i);
     scanf("%f", &A[i]);
