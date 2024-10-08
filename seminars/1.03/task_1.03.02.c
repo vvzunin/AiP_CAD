@@ -18,7 +18,7 @@ int main()
     while (getchar() != '\n');
     na = (int) fv1;
     ma = (int) fv2;
-  } while (na <= 0 || na > lmax || ma <= 0 || ma > lmax|| 
+  } while (na <= 0 || na > lmax || ma <= 0 || ma > lmax || 
            k != 2 || na != fv1 || ma != fv2);
 
   printf("Введите элементы матрицы A[1:%3d][1:%3d]:\n", na, ma);
@@ -44,7 +44,7 @@ int main()
   // printf("\nВведенная матрица A[1:%3d][1:%3d]:\n", na, ma);
   // for (i = 1; i <= na; i++)
   //   for (j = 1; j <= ma; j++)
-  //     printf("\tA[1:%3d][1:%3d]: %5d\n", i, A[i][j]);
+  //     printf("\tA[1:%3d][1:%3d]: %5d\n", i, j, A[i][j]);
 
   printf("\nВведенная матрица A[1:%3d][1:%3d]:\n", na, ma);
   for (i = 1; i <= na; i++) {
