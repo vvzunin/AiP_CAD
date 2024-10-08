@@ -7,15 +7,19 @@ int main()
   int na, ma, A[lmax + 1][lmax + 1], nb, B[lmax + 1];
   int i, j, k;
   int flag, min;
+  float fv1, fv2;
   printf("*************************************\n");
   printf("*     Семинар 1.03. Задание №02     *\n");
   printf("*************************************\n\n");
 
   do {
     printf("Введите размер матрицы A[1:%3d][1:%3d]: ", lmax, lmax);
-    k = scanf("%d%d", &na, &ma);
+    k = scanf("%f%f", &fv1, &fv2);
     while (getchar() != '\n');
-  } while (na <= 0 || na > lmax || ma <= 0 || ma > lmax || k != 2);
+    na = (int) fv1;
+    ma = (int) fv2;
+  } while (na <= 0 || na > lmax || ma <= 0 || ma > lmax|| 
+           k != 2 || na != fv1 || ma != fv2);
 
   printf("Введите элементы матрицы A[1:%3d][1:%3d]:\n", na, ma);
   for (i = 1; i <= na; i++)
@@ -26,9 +30,10 @@ int main()
 
   do {
     printf("Введите длину массива B[1:%3d]: ", lmax);
-    scanf("%d", &nb);
+    k = scanf("%f", &fv1);
+    nb = (int) fv1;
     while (getchar() != '\n');
-  } while (nb <= 0 || nb > lmax);
+  } while (nb <= 0 || nb > lmax || k != 1 || nb != fv1);
 
   printf("Введите элементы массива B[1:%3d]:\n", nb);
   for (i = 1; i <= nb; i++) {

@@ -2,16 +2,18 @@
 #define lmax 200
 
 int main() {
-  int na, nb, A[lmax+1], B[lmax+1], i, j;
+  int na, nb, A[lmax+1], B[lmax+1], i, j, k;
+  float fv;
   printf("*************************************\n");
   printf("*     Семинар 1.03. Задание №01     *\n");
   printf("*************************************\n\n");
 
   do {
     printf("Введите длину массива A[1:%3d]: ", lmax);
-    scanf("%d", &na);
+    k = scanf("%f", &fv);
+    na = (int) fv;
     while (getchar()!='\n');
-  } while (na <= 0 || na > lmax);
+  } while (na <= 0 || na > lmax || k != 1 || na != fv);
 
   printf("Введите элементы массива A[1:%3d]:\n", na);
   for (i = 1; i <= na; i++) {
