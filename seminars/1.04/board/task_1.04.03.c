@@ -31,8 +31,7 @@ int main()
   L = na;
   while (i < na) {
     j = 0;
-    while (j < na && (A[i] != A[j] || i == j))
-      j = j + 1;
+    for (j = 0; (j < na) && ((A[i] != A[j]) || (i == j)); j++);
     if (j < na) {
       x = A[i];
       k = i;
@@ -44,7 +43,6 @@ int main()
     else
       i = i + 1;
   }
-
 
   printf("\nПолученный результат:\n");
   if (na == 0)
