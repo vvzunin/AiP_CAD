@@ -81,7 +81,7 @@ int maxot(int n, int m, int A[][lmax], int k, int B[], int* max) {
 int main() {
   int A[lmax][lmax], n, m, B[lmax], k, max;
   printf("*************************************\n");
-  printf("*     Семинар 2.01. Задание №05     *\n");
+  printf("*     Семинар 2.02. Задание №05     *\n");
   printf("*************************************\n\n");
 
   in_matr(A, &n, &m); //ввод матрицы
