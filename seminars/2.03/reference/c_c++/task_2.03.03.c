@@ -2,6 +2,8 @@
 #include <ctype.h>
 #include <stdlib.h>
 
+// gcc -std=c99 -Wall task_2.03.03.c -lm
+
 long MaxNumb(char *s) {// вернет число, либо -1
   char *s1;
   long m, Max = -1;
