@@ -88,7 +88,7 @@ int main() {
 
   selectSubStrings(nStr, arrStr, &nSubStr, arrSubStr, arrNum);
 
-  puts("Obtained result:");
+  puts("Obtained results:");
   if (nSubStr == 0)
     puts("1. No substrings!");
   else {
