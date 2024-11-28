@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "author": "Александр Американов",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-nano", "id": "nano", "top": -81.6, "left": -29.3, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -224,
+      "left": -32.8,
+      "attrs": { "pins": "i2c" }
+    }
+  ],
+  "connections": [
+    [ "lcd1:GND", "nano:GND.1", "black", [ "h-57.6", "v211.2", "h201.6" ] ],
+    [ "nano:5V", "lcd1:VCC", "red", [ "v33.6", "h-172.8", "v-196.9" ] ],
+    [ "lcd1:SDA", "nano:A4", "green", [ "h-38.4", "v182.6", "h124.8" ] ],
+    [ "lcd1:SCL", "nano:A5", "blue", [ "h-28.8", "v163.5", "h124.8" ] ]
+  ],
+  "dependencies": {}
+}
