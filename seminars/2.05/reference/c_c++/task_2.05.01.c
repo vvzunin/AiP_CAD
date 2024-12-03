@@ -78,6 +78,9 @@ int transformString(char *s) {
 }
 
 int main() {
+  puts("*************************************");
+  puts("*      Seminar 2.05. Task №01       *");
+  puts("*************************************\n");
   char arrStr[10][strLen], arrSubStr[30][strLen];
   int i, i1, nStr = 0, nSubStr, arrNum[30], f;
 
