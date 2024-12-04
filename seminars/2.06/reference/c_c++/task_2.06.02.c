@@ -37,14 +37,14 @@ void inputBooks(int *n, struct book books[]) {
 }
 
 /*Функция формирования массива книг, изданных в 2010 г.*/
-void form(struct book books[], struct book2010 books2010[], int n, int *k10) {
+void form(struct book books[], struct book2010 books2010[], int n, int *n2010) {
   int i;
-  for (i = 0, *k10 = 0; i < n; i++)
+  for (i = 0, *n2010 = 0; i < n; i++)
     if (books[i].year == 2010) {
       strcpy(books2010->author, books[i].author);
       strcpy(books2010->title, books[i].title);
       books2010->price = books[i].price;
-      (*k10)++;
+      (*n2010)++;
       books2010++;
     }
 }
