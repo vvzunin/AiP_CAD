@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #define ML 81
-#define FCLR while (getc(fin) != '\n')
+#define FCLR while (getc(file) != '\n')
 
 void deln(char *s) {
   for (; *s && *s!='\n'; s++);
@@ -36,37 +36,37 @@ void output(struct book books[], int n) {
 
 /*Функция ввода из файла массива книг*/
 void fileReadBooks(int *n, struct book books[], char *fileName) {
-  FILE *fin;
-  *n = 0;
-  if (!(fin = fopen(fileName, "r")))
-    printf("File %s does not exist!\n", fileName);
-  else {
-    /* Предполагается, что во входном файле нет пустых строк и название книги занимает одну строку */
-    for (; !feof(fin); (*n)++)
-      if (fgets(books[*n].author, ML, fin)) {
-        deln(books[*n].author);
-        fgets(books[*n].title, ML, fin);
-        deln(books[*n].title);
-        fscanf(fin, "%d", &books[*n].year);
-        fscanf(fin, "%d", &books[*n].price);
-        // Очистка входного потока
-        if (!feof(fin))
-          FCLR;
-      }
-    fclose(fin);
+  FILE *file = fopen(fileName, "r");
+  if (!file){
+    printf("ERROR");
+    exit (1);
   }
+  while(!feof(file)){
+    if(fgets(books[*n].author, ML, file)){
+      deln(books[*n].author);
+      fgets(books[*n].title, ML, file);
+      deln(books[*n].title);
+      fscanf(file, "%d", &books[*n].year);
+      fscanf(file, "%d", &books[*n].price);
+      if (!feof(file))
+        FCLR;
+      *n = *n + 1;
+    }
+  }
+  fclose(file);
 }
 
 /*Функция вывода в файл массива структур*/
 void filePrintBooks(int n, struct book books[], char *fileName) {
-  int i;
-  FILE *fout;
-  fout = fopen(fileName, "w");
-  for (i = 0; i < n; i++)
-    fprintf(fout, "%s\n%s\n%4d %d\n",
-            books[i].author, books[i].title,
-            books[i].year, books[i].price);
-  fclose(fout);
+  FILE *file = fopen(fileName, "w");
+  for (int i = 0; i < n; i++) {
+    fputs(books->title, file);
+    fputs(books->author, file);
+    fprintf(file, "%d\n", books->year);
+    fprintf(file, "%d\n", books->price);
+    books++;
+  }
+  fclose(file);
 }
 
 int main() {
