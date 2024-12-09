@@ -1,31 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define lmax 20
-int search(char *filename)
-{
+
+int search(char *filename) {
   FILE *fl;
   int max, i;
   fl = fopen(filename, "r");
-  if (!fl)
-  {
-    printf("file not found");
+  if (!fl) {
+    printf("File not found!\n");
     exit(1);
   }
   fseek(fl, 0L, SEEK_END);
-  if (!ftell(fl))
-  {
-    printf("file is empty");
+  if (!ftell(fl)) {
+    printf("File is empty\n");
     exit(2);
   }
   rewind(fl);
   i = fscanf(fl, "%d", &max);
-  if (!i)
-  {
-    printf("there are no numbers");
+  if (!i) {
+    printf("There are no numbers!\n");
     exit(3);
   }
-  while (!feof(fl))
-  {
+  while (!feof(fl)) {
     fscanf(fl, "%d", &i);
     if (i > max)
       max = i;
@@ -34,14 +30,13 @@ int search(char *filename)
   return max;
 }
 
-int main()
-{
+int main() {
   puts("*************************************");
   puts("*      Seminar 2.07. Task №01       *");
   puts("*************************************\n");
   char filename[lmax];
-  printf("input name");
+  printf("Input fileName: ");
   gets(filename);
-  printf("maximum = %d", search(filename));
+  printf("Maximum number: %d\n", search(filename));
   return 0;
 }
