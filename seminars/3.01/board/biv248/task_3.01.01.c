@@ -19,21 +19,26 @@ struct phone {
 // Ввод целого числа в границах от min до мах,
 // s - наименование поля.
 int inputIntNumberCheck(int min, int max, char s[]) {
-  int k = 0;
-  do {
-    printf("Input %s:\n", s);
-    if (scanf("%d", &k) == 0) CLR;
-  } while (k < min || k > max);
-  CLR;
-  return k;
+  float a;
+  int b;
+  do
+  {
+    printf("Input %s:", s);
+    b = scanf("%f", &a);
+    while(getchar() != '\n');
+  } while((int) a != a || b != 0);
+  return (int) a;
 }
 
 // Ввод строки, которая обязательно содержит хотя бы 1 символ.
 void inputStringCheck(char name[], char s[]) {
-  do {
-    printf("Input %s:\n", name);
-    gets(s);
-  } while (strcmp(s, "") == 0);
+  char b[L];
+  do
+  {
+    printf("Input %s:\n", s);
+    gets(b);
+  } while(!b);
+  return b; 
 }
 
 // Ввод структур телефонов.
@@ -75,19 +80,24 @@ void outputPhones(struct phone phones[], int phoneCount) {
 // firmsCount – количество подходящих телефонов.
 int searchLightestPhone(struct phone phones[], int phoneCount,
                         char firms[][L]) {
-  int firmsCount = 0, minPhoneWeight = maxPhoneWeight + 1, i, j;
-  for (i = 0; i < phoneCount; i++)
-    if (phones[i].weight < minPhoneWeight) minPhoneWeight = phones[i].weight;
-  for (i = 0; i < phoneCount; i++) {
-    if (phones[i].weight == minPhoneWeight) {
-      for (j = 0; j < firmsCount && strcmp(phones[i].firm, firms[j]); j++);
-      if (j == firmsCount) {
-        strcpy(firms[j], phones[i].firm);
-        firmsCount++;
+  int low_weight = -1;
+  int num_firms = 0;
+
+  for (size_t i = 0; i < phoneCount; i++)
+  {
+    if (low_weight == -1 || phones[i].weight <= low_weight)
+    {
+      if (low_weight == -1 || phones[i].weight < low_weight)
+      {
+        low_weight = phones[i].weight;
+        num_firms = 0;
       }
+
+      strncpy(firms[num_firms], phones[i].firm, L);
+      num_firms++;
     }
   }
-  return firmsCount;
+  return num_firms;
 }
 
 // Вывод полученного списка фирм
@@ -99,42 +109,13 @@ void outputSearchResult(int firmsCount, char firms[][L]) {
 // Массив указателей на телефоны, выпущенных до заданной даты.
 int searchPhoneBeforeDate(struct phone phones[], int phoneCount,
                           struct phone *phoneBeforeDate[]) {
-  int y, m, phoneBeforeDateCount = 0, i;
-  // Возвр. число секунд с полуночи 1 янв. 1970.
-  time_t t = time(NULL);
-  // Структура, содержащая дату и время.
-  // Запрашиваем текущее время.
-  struct tm *today = localtime(&t);
-  // Количество лет начинается с 1900 г.
-  int year = today->tm_year + 1900;
-  // Ввод заданной даты с проверкой ее корректности.
-  y = inputIntNumberCheck(1983, year, "year for search: ");
-  m = inputIntNumberCheck(1, 12, "month for search: ");
-  for (i = 0; i < phoneCount; i++)
-    if (phones[i].date.year < y ||
-        phones[i].date.year == y && phones[i].date.month < m)
-      phoneBeforeDate[phoneBeforeDateCount++] = &phones[i];
-  return phoneBeforeDateCount;
+  
 }
 
 // Вывод телефонов, выпущенных до указанной даты
 void outputFoundedPhone(struct phone *phoneBeforeDate[],
                         int phoneBeforeDateCount) {
-  if (phoneBeforeDateCount == 0)
-    printf("No phones founded!\n");
-  else {
-    printf("Founded phones:\n");
-    for (int i = 0; i < phoneBeforeDateCount; i++) {
-      printf("\tPhone #%d\n", i + 1);
-      printf("\t\tYear: %d\n", phoneBeforeDate[i]->date.year);
-      printf("\t\tMonth: %d\n", phoneBeforeDate[i]->date.month);
-      printf("\t\tFirm: %s\n", phoneBeforeDate[i]->firm);
-      printf("\t\tWeight: %d\n", phoneBeforeDate[i]->weight);
-      printf("\t\tColor: %s\n", phoneBeforeDate[i]->color);
-      printf("Use any key to continue...\n");
-      getchar();
-    }
-  }
+  
 }
 
 int main() {
