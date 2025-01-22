@@ -45,30 +45,31 @@ void printList(struct node *lst) {
 //    lst - начало списка,
 //    flag - признак его изменения.
 // Возвращает адрес начала измененного списка
-struct node *del(struct node *lst, int *flag) {
-  struct node *curr, *pred;
-  *flag = 0;
-  curr = pred = lst;
-  while (curr)
-    if ((curr->info) % 2) { // удаляем
-      if (curr == lst) { // первый
-        curr = curr->next;
-        free(lst);
-        lst = curr;
+struct node *del(struct node *fst, int *flag) {
+    struct node *curr = fst, *pred = fst;
+    *flag = 0;
+    while(curr) {
+      if((curr->info % 2) != 0) {
+        if (fst == curr) {
+          curr = curr->next;
+          free(pred);
+          fst = curr;
+          pred = curr;
+          *flag = 1;
+        }
+        else {
+          pred->next = curr->next;
+          free(curr);
+          curr = pred->next;
+          *flag = 1;
+        }
+      }
+      else {
         pred = curr;
+        curr = curr->next;
       }
-      else { // не первый
-        pred->next = curr->next;
-        free(curr);
-        curr = pred->next;
-      }
-      *flag = 1;
     }
-    else { // не удаляем – движение по списку
-      pred = curr;
-      curr = curr->next;
-    }
-  return lst;
+    return fst;
 }
 
 // Освобождение памяти

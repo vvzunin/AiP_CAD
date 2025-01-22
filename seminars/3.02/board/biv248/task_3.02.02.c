@@ -27,23 +27,24 @@ struct node *stack() {  // формирование стека
 
 // Поиск минимального из элементов списка
 int findMinElementOfList(struct node *lst) {
-  struct node *min = lst;
-  struct node *p = lst->next; // указатель на текущую запись
-  while (p != NULL) {         // лучше while(p)
-    if (p->info < min->info) min = p;
-    p = p->next;
+  int min = lst->info;
+  struct node *p = lst->next;
+  while (p){
+    if (p->info < min){
+      min = p->info;
+    }
+    p=p->next;
   }
-  return (min->info);
+  return min;
 }
 
 // Вывод списка на экран
 void printList(struct node *lst) {
   struct node *p = lst;
-  while (p) {
-    printf("%7d", p->info);
-    p = p->next;
+  while (p){
+    printf("%5d", p->info);
+    p=p->next;
   }
-  printf("\n");
 }
 
 // Освобождение памяти
