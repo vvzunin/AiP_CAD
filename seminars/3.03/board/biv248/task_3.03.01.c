@@ -35,13 +35,9 @@ struct node *queue() {
 // Функция вывода списка
 void printList(struct node *lst) {
   if (!lst)
-  {
     puts("List is empty!");
-  }
-  else
-  {
-    while (lst)
-    {
+  else {
+    while (lst) {
       printf("%7d", lst->info);
       lst = lst->next;
     }
@@ -51,56 +47,44 @@ void printList(struct node *lst) {
 
 // Функция вставки 100 перед максимальным и 1000
 // после него
-struct node *before_and_after(struct node *first)
-{
-  struct node *curr, *prev, *r100,
-      *r1000, *max, *predmax;
-  curr = prev = max = predmax = first;
-  // Поиск максимального элемента
-  while (curr)
-  {
-    if (curr->info > max->info)
-    {
-      max = curr;
-      predmax = prev;
+struct node *before_and_after(struct node *first) {
+  struct node *max = first;
+  struct node *predmax = first;
+  struct node *pred = first;
+  struct node *curr = first->next;
+  while (curr) {
+    if (curr->info > max->info) {
+      max=curr;
+      predmax=pred;
     }
-    prev = curr;
-    curr = curr->next;
+    pred=pred->next;
+    curr=curr->next;
+  }
+  
+  if (max != first) {
+    curr = (struct node *)malloc(sizeof(struct node)); 
+    predmax->next = curr;
+    curr->next = max;
+    curr->info = 100;
+  } else {
+    curr = (struct node *)malloc(sizeof(struct node)); 
+    curr->next = max;
+    first = curr;
+    curr->info = 100;
   }
 
-  // Выделение памяти для новых узлов
-  r100 = (struct node *)malloc(sizeof(struct node));
-  r1000 = (struct node *)malloc(sizeof(struct node));
-
-  r100->info = 100;
-  r1000->info = 1000;
-
-  // Вставка 1000 после max
-  r1000->next = max->next;
-  max->next = r1000;
-
-  // Вставка 100 перед max
-  // Если max - первый элемент списка
-  if (max == first)
-  {
-    r100->next = first;
-    first = r100;
-  }
-  else
-  {
-    r100->next = max;
-    predmax->next = r100;
-  }
+  curr = (struct node *)malloc(sizeof(struct node)); 
+  curr->next = max->next;
+  max->next = curr;
+  curr->info = 1000;
 
   return first;
 }
 
 // Функция освобождения памяти
-void freeMemory(struct node *lst)
-{
+void freeMemory(struct node *lst) {
   struct node *now = lst, *next = lst;
-  while (next)
-  {
+  while (next) {
     next = now->next;
     free(now);
     now = next;
@@ -108,8 +92,7 @@ void freeMemory(struct node *lst)
   puts("\nNow memory is free!");
 }
 
-int main()
-{
+int main() {
   puts("*************************************");
   puts("*      Seminar 3.03. Task №01       *");
   puts("*************************************\n");
@@ -120,8 +103,7 @@ int main()
   printf("Initial list:\n");
   printList(lst);
 
-  if (lst)
-  {
+  if (lst) {
     lst = before_and_after(lst);
     printf("Modified list:\n");
     printList(lst);

@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct node {
+struct node
+{
   struct node *next;
   int info;
 };
@@ -35,13 +36,9 @@ struct node *queue() {
 // Функция вывода списка
 void printList(struct node *lst) {
   if (!lst)
-  {
     puts("List is empty!");
-  }
-  else
-  {
-    while (lst)
-    {
+  else {
+    while (lst) {
       printf("%7d", lst->info);
       lst = lst->next;
     }
@@ -49,58 +46,24 @@ void printList(struct node *lst) {
   }
 }
 
-// Функция вставки 100 перед максимальным и 1000
-// после него
-struct node *before_and_after(struct node *first)
-{
-  struct node *curr, *prev, *r100,
-      *r1000, *max, *predmax;
-  curr = prev = max = predmax = first;
-  // Поиск максимального элемента
-  while (curr)
-  {
-    if (curr->info > max->info)
-    {
-      max = curr;
-      predmax = prev;
-    }
-    prev = curr;
-    curr = curr->next;
+// Функция реверса списка
+struct node *reverse(struct node *lst) {
+  struct node* tail, *newhead;
+  if (lst == NULL || lst->next == NULL){
+    return lst;
+  } else {
+    tail = lst->next;
+    newhead = reverse(tail);
+    lst->next = NULL;
+    tail->next = lst;
+    return newhead;
   }
-
-  // Выделение памяти для новых узлов
-  r100 = (struct node *)malloc(sizeof(struct node));
-  r1000 = (struct node *)malloc(sizeof(struct node));
-
-  r100->info = 100;
-  r1000->info = 1000;
-
-  // Вставка 1000 после max
-  r1000->next = max->next;
-  max->next = r1000;
-
-  // Вставка 100 перед max
-  // Если max - первый элемент списка
-  if (max == first)
-  {
-    r100->next = first;
-    first = r100;
-  }
-  else
-  {
-    r100->next = max;
-    predmax->next = r100;
-  }
-
-  return first;
 }
 
 // Функция освобождения памяти
-void freeMemory(struct node *lst)
-{
+void freeMemory(struct node *lst) {
   struct node *now = lst, *next = lst;
-  while (next)
-  {
+  while (next) {
     next = now->next;
     free(now);
     now = next;
@@ -108,10 +71,9 @@ void freeMemory(struct node *lst)
   puts("\nNow memory is free!");
 }
 
-int main()
-{
+int main() {
   puts("*************************************");
-  puts("*      Seminar 3.03. Task №01       *");
+  puts("*      Seminar 3.03. Task №02       *");
   puts("*************************************\n");
 
   struct node *lst;
@@ -120,10 +82,9 @@ int main()
   printf("Initial list:\n");
   printList(lst);
 
-  if (lst)
-  {
-    lst = before_and_after(lst);
-    printf("Modified list:\n");
+  if (lst) {
+    lst = reverse(lst);
+    printf("Reversed list:\n");
     printList(lst);
     freeMemory(lst);
   }

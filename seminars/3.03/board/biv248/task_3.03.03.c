@@ -23,7 +23,7 @@ struct node *stack() {
 
 // Функция вывода списка
 void printList(struct node *lst) {
-  if (!lst)
+  if (!lst) 
     puts("List is empty!");
   else {
     while (lst) {
@@ -36,32 +36,26 @@ void printList(struct node *lst) {
 
 // Функция создания нового списка (из элементов, кратных 3)
 struct node *newList(struct node *first) {
-  struct node *curr, *lastNew, *currNew, *firstNew;
-  curr = first;
-  firstNew = NULL;
+  struct node *newlist = NULL;
+  struct node *newlist_curr = NULL;
+  struct node *newlist_last = NULL;
+  struct node *curr = first;
 
-  while (curr != NULL) {
+  while (curr) {
     if (curr->info % 3 == 0) {
-      if (firstNew == NULL) {
-        firstNew = (struct node *)malloc(sizeof(struct node));
-        lastNew = firstNew;
+      if (!newlist) {
+        newlist = (struct node *)malloc(sizeof(struct node));
+        newlist->info = curr->info;
+        newlist_last = newlist;
+      } else {
+        newlist_curr = (struct node *)malloc(sizeof(struct node));
+        newlist_curr->info = curr->info;
+        newlist_last->next = newlist_curr;
       }
-
-      currNew = lastNew;
-      lastNew = (struct node *)malloc(sizeof(struct node));
-
-      currNew->info = curr->info;
-      currNew->next = lastNew;
     }
     curr = curr->next;
   }
-
-  if (firstNew != NULL) {
-    currNew->next = NULL;
-    free(lastNew);
-  }
-
-  return firstNew;
+  return newlist;
 }
 
 // Функция освобождения памяти
