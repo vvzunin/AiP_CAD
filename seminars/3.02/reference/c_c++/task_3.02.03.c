@@ -11,7 +11,7 @@ struct node *queue() {
   int n;  struct node *add,*last, *first=NULL; // Сначала список пуст
   printf("Enter positive integers:\n");
   if(!scanf("%d",&n)||n<=0)
-    return first;
+    return  first;
   else {
     first= (struct node*) malloc(sizeof(struct node)); 
     //выделим память для первой записи
