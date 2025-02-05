@@ -80,7 +80,7 @@ struct node *insertSorted(struct node *first, int n) {
     add->next = NULL;
     first = add;
   } else {
-    if (first->info == n) {
+    if (first->info >= n) {
       add->next = first;
       first = add;
     } else {
