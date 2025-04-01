@@ -4,59 +4,53 @@ using namespace std;
 #include <string>
 
 int substr(int k1, string mas1[], string mas2[], int nom[]) {
-  int n, i, j, j1, j2;
-  int k2 = 0;
-  for (i = 0; i < k1; ++i)   {
-    j = 0;
-    n = mas1[i].length();
-    j1 = -1;
-    j2 = -1;
-    while (j < n - 1)
-      if (mas1[i][j] == '/' && mas1[i][j + 1] == '*') {
-        j1 = j + 2;
-        j = j + 2;
-        while (j < n - 1 && j2 == -1)
-          if (mas1[i][j] == '*' && mas1[i][j + 1] == '/')
-            j2 = j - 1;
-          else
-            j = j + 1;
-        if (j1 != -1 && j2 != -1 && j1 <= j2) {
-          mas2[k2].assign(mas1[i], j1, j2 - j1 + 1);
-          nom[k2++] = i;
+  int kol = 0;
+  for (int i = 0; i<k1; i++){
+    int len = mas1[i].length();
+    int j = 0;
+    while (j<len-2){
+      if (mas1[i][j] == '/' && mas1[i][j+1] == '*'){
+        int k = j+2;
+        int k1 = -1;
+        for (j = k; j<len-1&&k1==-1; j++) {
+          if (mas1[i][j+1] == '/' && mas1[i][j] == '*') {
+            k1 = j-1;
+          }
         }
-        j1 = -1;
-        j2 = -1;
+        if (k1>=k) {
+          mas2[kol].assign(mas1[i], k, (k1-k+1));
+          nom[kol] = i;
+          kol+=1;
+        }
       }
-      else
-        j = j + 1;
-  }
-  return k2;
+      j++;
+    }
+  } 
+  return kol;
 }
 
 int nompodstr(int k2, string mas2[]) {
-  int i, j, max, maxi;
-  max = 0;
-  maxi = -1;
-  for (i = 0; i < k2; ++i) {
-    j = 0;
-    while (j < mas2[i].length() && isdigit(mas2[i][j]))
-      ++j;
-    if (j > max) {
-      max = j;
-      maxi = i;
+  int maks = -1;
+  int maks_num = 0;
+  int j = 0;
+  for (int i = 0; i<mas2->length(); i++){
+    for (j = 0; j<mas2[i].length()&&isdigit(mas2[i][j]);j++);
+    if (j>maks_num){
+      maks_num = j;
+      maks = i;
     }
   }
-  return maxi;
+  return maks;
 }
 
 bool change(string &s) {
   bool f = false;
-  int i;
-  for (i = 0; i < s.length(); ++i)
-    if (s[i] >= 'A' && s[i] <= 'J') {
-      f = true;
+  for (int i = 0; i<s.length(); i++){
+    if (s[i] >='A'&& s[i]<='J'){
       s[i] = s[i] - 'A' + '0';
-    };
+      f = true;
+    }
+  }
   return f;
 }
 
