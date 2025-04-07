@@ -61,6 +61,9 @@ bool change(string &s) {
 }
 
 int main() {
+  cout << "*************************************\n";
+  cout << "*      Seminar 4.01. Task №01       *\n";
+  cout << "*************************************\n\n";
   int num, i, k1, k2;
   string s;
   do {
