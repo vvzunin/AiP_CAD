@@ -1,0 +1,3 @@
+int count(void)
+{int c=a+((*b+c)};
+return a;{
