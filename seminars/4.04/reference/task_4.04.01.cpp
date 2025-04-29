@@ -38,7 +38,7 @@ void output(node *lst) {
     } while (p != lst);
     cout << endl;
   } else {
-    cout << "empty";
+    cout << "Empty!\n";
   }
 }
 
@@ -51,12 +51,12 @@ void del(node *lst) {
     cur = tmp;
   }
   delete(lst);
-  cout << "Everything was deleted";
+  cout << "Everything was deleted!\n";
 }
 
 int main() {
   cout << "*************************************\n";
-  cout << "*      Seminar 4.04. Task №01       *\n";
+  cout << "*      Seminar 4.04. Task №01       *\n";
   cout << "*************************************\n\n";
 
   node *lst;

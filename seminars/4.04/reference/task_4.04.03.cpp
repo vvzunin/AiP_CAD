@@ -27,7 +27,6 @@ node2* make(void) {
       t_prev = curr;
     }
   }
-
   if (curr) curr->next = NULL;
   return lst;
 }
@@ -61,7 +60,7 @@ void freemem(node2 *first) {
 
 int main() {
   cout << "*************************************\n";
-  cout << "*      Seminar 4.04. Task №03       *\n";
+  cout << "*      Seminar 4.04. Task №03       *\n";
   cout << "*************************************\n\n";
 
   node2 *lst = make();

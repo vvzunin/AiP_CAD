@@ -81,7 +81,6 @@ node2* changes(node2 *lst, bool *flag, int x1, int x2) {
     }
     tek = tek->next;
   }
-
   return lst;
 }
 
@@ -97,7 +96,7 @@ void freemem(node2 *first) {
 
 int main() {
   cout << "*************************************\n";
-  cout << "*      Seminar 4.04. Task №04       *\n";
+  cout << "*      Seminar 4.04. Task №04       *\n";
   cout << "*************************************\n\n";
 
   node2 *lst;
@@ -119,12 +118,11 @@ int main() {
     lst = changes(lst, &flag, x1, x2);
 
     if (!flag) {
-      cout << "\nNo changes";
+      cout << "\nNo changes!\n";
     } else {
       cout << "\nNew list:" << endl;
       output(lst);
     }
-
     freemem(lst);
   }
 

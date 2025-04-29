@@ -75,7 +75,7 @@ node* ins(node *lst1, node *lst2) {
 
 int main() {
   cout << "*************************************\n";
-  cout << "*      Seminar 4.04. Task №02       *\n";
+  cout << "*      Seminar 4.04. Task №02       *\n";
   cout << "*************************************\n\n";
 
   node *lst1, *lst2;
