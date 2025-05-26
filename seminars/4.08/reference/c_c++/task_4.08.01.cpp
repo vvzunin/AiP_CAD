@@ -63,23 +63,23 @@ int main() {
   cout << "*************************************\n\n";
 
   node *der;
-  int na, a[50];
+  int na, A[50];
   cout << "Input size of array:" << endl;
   cin >> na;
   cout << "Input array:" << endl;
   for (int i = 0; i < na; i++)
-    cin >> a[i];
+    cin >> A[i];
   cout << "We are making a tree..." << endl;
-  der = newtree(a, na);
+  der = newtree(A, na);
   if (!der)
     cout << "No tree!\n";
   else {
     cout << "Tree:" << endl;
     printTree(der, 0);
-    sort(der, a, na);
+    sort(der, A, na);
     cout << "Array after sort:" << endl;
     for (int i = 0; i < na; i++)
-      cout << a[i] << "   ";
+      cout << A[i] << "   ";
     cout << endl;
   }
   return 0;
