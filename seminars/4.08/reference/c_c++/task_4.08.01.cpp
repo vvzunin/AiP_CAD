@@ -6,12 +6,12 @@ struct node {
   node *left, *right;
 };
 
-node *newtree(int a[], int na) {
+node *newtree(int A[], int na) {
   node *der = NULL, *curr, *next, *newc;
   int i;
   for (i = 0; i < na; i++) {
     newc = new node;
-    newc->info = a[i];
+    newc->info = A[i];
     newc->left = newc->right = NULL;
     if (!der) der = newc;
     else {
@@ -32,13 +32,13 @@ node *newtree(int a[], int na) {
   return der;
 }
 
-void print_tree(node *der, int h) {
+void printTree(node *der, int h) {
   if (der) {
-    print_tree(der->left, h + 1);
+    printTree(der->left, h + 1);
     for (int i = 0; i < h; i++)
       cout << "  ";
     cout << der->info << endl;
-    print_tree(der->right, h + 1);
+    printTree(der->right, h + 1);
   }
 }
 
@@ -59,25 +59,25 @@ void sort(node *der, int a[], int na) {
 
 int main() {
   cout << "*************************************\n";
-  cout << "*      Seminar 4.08. Task №01       *\n";
+  cout << "*      Seminar 4.08. Task №01       *\n";
   cout << "*************************************\n\n";
 
   node *der;
   int na, a[50];
   cout << "Input size of array:" << endl;
   cin >> na;
-  cout << "Input Array:" << endl;
+  cout << "Input array:" << endl;
   for (int i = 0; i < na; i++)
     cin >> a[i];
-  cout << "We are making a tree" << endl;
+  cout << "We are making a tree..." << endl;
   der = newtree(a, na);
   if (!der)
-    cout << "No tree";
+    cout << "No tree!\n";
   else {
     cout << "Tree:" << endl;
-    print_tree(der, 0);
+    printTree(der, 0);
     sort(der, a, na);
-    cout << "Array after sort" << endl;
+    cout << "Array after sort:" << endl;
     for (int i = 0; i < na; i++)
       cout << a[i] << "   ";
     cout << endl;

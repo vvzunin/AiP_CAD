@@ -6,13 +6,13 @@ struct node {
   node *left, *right;
 };
 
-void print_tree(node *der, int h) {
+void printTree(node *der, int h) {
   if (der) {
-    print_tree(der->left, h + 1);
+    printTree(der->left, h + 1);
     for (int i = 0; i < h; i++)
       cout << "  ";
     cout << der->info << endl;
-    print_tree(der->right, h + 1);
+    printTree(der->right, h + 1);
   }
 }
 
@@ -32,10 +32,10 @@ node *add(node *tree, int info) {
 }
 
 
-node *create(int ar[], int n) {
+node *create(int A[], int n) {
   node *tree = NULL;
   for (int i = 0; i < n; i++)
-    tree = add(tree, ar[i]);
+    tree = add(tree, A[i]);
   return tree;
 }
 
@@ -72,7 +72,7 @@ void udalx(node **tree, int x) {
 
 int main() {
   cout << "*************************************\n";
-  cout << "*      Seminar 4.08. Task №02       *\n";
+  cout << "*      Seminar 4.08. Task №02       *\n";
   cout << "*************************************\n\n";
 
   int n;
@@ -86,22 +86,22 @@ int main() {
 
   tree = create(ar, n);
   if (!tree)
-    cout << "Tree is empty";
+    cout << "Tree is empty!\n";
   else {
     cout << "Original tree:\n";
-    print_tree(tree, 0);
+    printTree(tree, 0);
     int x;
-    cout << "Enter x\n";
+    cout << "Enter x: ";
     cin >> x;
     udalx(&tree, x);
     if (!tree)
-      cout << "Tree is empty";
+      cout << "Tree is empty!\n";
     else {
       if (!fl)
-        cout << "Tree was not changed";
+        cout << "Tree was not changed!\n";
       else {
         cout << "New tree:\n";
-        print_tree(tree, 0);
+        printTree(tree, 0);
       }
     }
   }
