@@ -52,8 +52,8 @@ void search(node *der) {
   search(der->right);
 }
 
-void sort(node *der, int a[], int na) {
-  ua = a;
+void sort(node *der, int A[], int na) {
+  ua = A;
   search(der);
 }
 
@@ -102,9 +102,9 @@ node *add(node *tree, int info) {
   return tree;
 }
 
-node *create(int ar[], int n) {
+node *create(int A[], int n) {
   node *tree = NULL;
   for (int i = 0; i < n; i++)
-    tree = add(tree, ar[i]);
+    tree = add(tree, A[i]);
   return tree;
 }
